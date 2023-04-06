@@ -52,7 +52,19 @@ python drs_test.py <object_id>
 ## Next Step
 1. **Packaging the application:**
   - Creating a python package with redefining the structure of the project, adding license, configuration files and deploy on pypi using twine
-  - Containerizing the project by creating dockerfile, docker-compose.yml and mentioning the requirements and exposing the port. Then using third party library like **requests** to access the port where application is listening
+  - Creating Docker Image:
+  
+    **EDIT1: Running application as a docker image**
+    Modified the project so it can be containerized, only added a dockerfile with requirements to create the image.
+    Steps for regenerating the result:
+    1. Build the docker image: `docker build -t drs_test_image .`
+    2. Run the docker image: `docker run --add-host=localhost:host-gateway drs_test_image <obj_id>`
+    This returns the same result:
+    ```
+    {"object_id": "8e18bfb64168994489bc9e7fda0acd4f", "test_name": "Regex for object_id validity", "pass": true, "message": "valid object_id"}
+    {"object_id": "8e18bfb64168994489bc9e7fda0acd4f", "test_name": "Test for DRS object existance", "pass": true, "message": "DRS object found"}
+    {"object_id": "8e18bfb64168994489bc9e7fda0acd4f", "test_name": "Test for response schema", "pass": true, "message": "valid 200 response"}
+    ```
 
 
 2. **Improvement/Additional tests:**
